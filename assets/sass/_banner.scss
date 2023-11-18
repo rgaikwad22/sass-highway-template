@@ -1,0 +1,172 @@
+.banner-section {
+    min-height: 990px;
+    position: relative;
+    background-color: rgba(11, 11, 11, 0.452);
+
+    & .wrapper {
+        min-height: 990px;
+        @include flex();
+        @include align($align: center);
+        @include justify($justify: center);
+    }
+    
+
+    &__bg-video {
+        width: 100%;
+        height: 100%;
+        @include position($position: absolute, $z-index: -1, $left: 0, $top: 0);
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+    &__details {
+        @include flex();
+        @include align($align: center);
+        @include justify($justify: center);
+        @include direction($direction: column);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: map-get($map: $colors, $key: white);
+        @include transform($property: translate(-50%, -50%));
+
+        .icon-next-section-btn {        
+            margin-top: 55px;
+            width: 60px;
+            height: 60px;
+            @include font($size: 20px);
+        }
+
+        .icon-next-section-btn::before  {
+            padding: 18px 22px;
+            border: 1px solid map-get($map: $colors, $key: white);
+            border-radius: 50%;
+            background-color: map-get($map: $colors, $key: lightPurple);
+            color: map-get($map: $colors, $key: white);
+        }
+    }
+    
+    &__heading {
+        @include font($size: 55px);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__sub-heading {
+        margin-top: 15px;
+        @include font($size: 17px);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+
+        .underline {
+            color: map-get($map: $colors, $key: white);
+            text-transform: lowercase;
+            text-decoration: underline;
+            @include transition(all, .2s, ease-in-out);
+        }
+    }
+    
+    &__sub-desc {
+        margin-top: 20px;
+        @include font($size: 19px);
+        text-align: center;
+        text-transform: initial;
+        letter-spacing: 3px;
+    }
+
+    &__message-btn {
+        @include position(absolute, $bottom: 25px, $right: 10px);
+
+        .icon-message-btn {
+            width: 68px;
+            height: 60px;
+            @include font($size: 20px);
+        }
+
+        .icon-message-btn::before {
+            padding: 18px;
+            border-radius: 50%;
+            border-bottom-right-radius: 0;
+            background-color: map-get($map: $colors, $key: lightWhite);
+            color: map-get($map: $colors, $key: white);
+        }
+    }
+
+    @at-root {
+        @include responsive-reverse(map-get($devices, tablet)) {
+            .icon-next-section-btn:hover::before { background-color: map-get($map: $colors, $key: lightWhite); }
+
+            .icon-message-btn:hover::before {
+                background-color: map-get($map: $colors, $key: white);
+                color: map-get($map: $colors, $key: lightPurple);
+            }
+
+            .underline:hover { color: map-get($map: $colors, $key: lightWhite); }
+        }
+
+        @include responsive(map-get($devices, ipad)) {
+
+            .banner-section {
+                min-height: 800px;
+
+                .wrapper { min-height: 800px; }
+            }
+
+            &__details { width: 80%; }
+
+            &__heading { @include font($size: 48px); }
+
+        }
+
+        @include responsive(map-get($devices, extralargePhone)) {
+            &__heading { @include font($size: 42px); }
+            &__sub-heading { @include font($size: 14px); }
+            &__sub-desc { @include font($size: 16px); }
+        }
+
+        @include responsive(map-get($devices, largePhone)) {
+
+            .banner-section {
+                min-height: 750px;
+
+                .wrapper { min-height: 750px; }
+            }
+
+            &__heading { @include font($size: 37px); }
+
+            &__details .icon-next-section-btn::before { 
+                padding: 14px 18px;
+                @include font($size: 18px);
+            }
+
+            &__details .icon-next-section-btn {
+                margin-top: 40px;
+                width: 50px;
+                height: 50px;
+            }
+
+            &__message-btn .icon-message-btn::before {
+                padding: 15px;
+                @include font($size: 17px);
+            }
+
+            &__message-btn .icon-message-btn {
+                width: 48px;
+                height: 48px;
+            }
+
+        }
+
+        @include responsive(map-get($devices, mediumPhone)) {
+            &__heading { @include font($size: 31px); }
+            &__sub-heading { @include font($size: 13px); }
+            &__sub-desc { @include font($size: 15px); }
+        }
+    }
+}

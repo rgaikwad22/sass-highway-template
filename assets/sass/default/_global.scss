@@ -1,0 +1,82 @@
+// common styling starts here
+
+body {
+  overflow: hidden;
+  @include font($family: sans-serif);
+}
+  
+a { text-decoration: none; }
+li { list-style-type: none; }
+  
+.icon {
+  width: 13px;
+  height: 13px;
+  display: block;
+  position: relative;
+  color: map-get($map: $colors, $key: lightWhite);
+  text-indent: -9999px;
+}
+  
+.icon:before,
+.icon::after {
+  display: block;
+  text-indent: 0;
+  @include position($position: absolute, $top: 0, $left: 0);
+  @include font($family: "FontAwesome");
+  @include transition(all, .4s, ease-in-out);
+}
+  
+.heading {
+  color: map-get($map: $colors, $key: lightBlack);
+  text-transform: initial;
+  text-align: center;
+  line-height: 60px;
+  @include font($size: 44px);
+}
+  
+.btn {
+  padding: 18px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: map-get($map: $colors, $key: primaryColor);
+  color: map-get($map: $colors, $key: white);
+  @include transition(all, .2s, ease-in-out);
+  white-space: nowrap;
+}
+  
+figure {
+  width: 100%;
+  height: 100%;
+}
+  
+img { @include img($width: 100%, $height: 100%, $objFit: cover); }
+  
+.head {
+  color: map-get($map: $colors, $key: lightBlack);
+  @include font($size: 28px);
+  text-transform: capitalize;
+}
+  
+.section-para {
+  margin-top: 10px;
+  color: map-get($map: $colors, $key: lightGrey);
+  @include font($size: 15px);
+  line-height: 22px;
+}
+
+.bold-text { @include font($weight: 700); }
+  
+/*for wrapper*/
+.wrapper {
+  width: 98%;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+  
+@each $key, $value in $iconContent {
+  .icon-#{$key}::before {
+    content: $value;
+  }
+}
+  
+// common styling ends here
